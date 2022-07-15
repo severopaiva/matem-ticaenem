@@ -44,6 +44,7 @@ def desviopadrao(conjunto):
 
 def moda(conjunto):
     dict_moda = {}
+    modas = []
     for i in conjunto:
         if i in dict_moda.keys():
            dict_moda [i] = dict_moda [i] + 1
@@ -57,7 +58,11 @@ def moda(conjunto):
         chave.append(i)
     maximo = max (valor)
     indice = valor.index(maximo)
-    return (chave [indice])
+    modas.append(chave [indice])
+    for j in range (indice+1,len(valor)):
+        if valor [j] == maximo:
+            modas.append(chave[j])
+    return (modas)
 
 def geragrafico (conjunto):
     x = np.arange(n) 
@@ -97,7 +102,7 @@ while continua == "S" or continua == "s":
    print ("Conjunto original: ", lista, "Conjunto odenado: ",listaclass)
    print ("Média (verde): ","{:.1f}".format (media))
    print ("Mediana (Laranja): ", med)
-   print ("Moda: ", moda(listaclass))
+   print ("Moda(s): ", moda(listaclass))
    print ("Desvio Padrão: ", "{:.1f}".format(desviopadrao (lista)))
    print ("Variância: ","{:.1f}".format(variancia))
    geragrafico (listaclass)
