@@ -23,8 +23,8 @@ def mediana (conjunto):
     n = len (conjunto)
     conjord = sorted(conjunto)
     if (n % 2) == 0:     #Testa número de elementos é PAR
-        med1 = int ((n / 2) - 1)
-        med2 = int ((n + 2)/ 2 - 1)
+        med1 = int ((n / 2) - 1)                           # O "-1" na fórmula é para compatibilizar com o índice inicial zero do python para listas
+        med2 = int ((n + 2)/ 2 - 1)                        # O "-1" na fórmula é para compatibilizar com o índice inicial zero do python para listas
         return (conjord [med1] + conjord [med2]) / 2
     else:
         med1 = int((n + 1) / 2) - 1
@@ -37,7 +37,7 @@ def desviopadrao(conjunto):
     variancia = 0
     for i in range (len(conjunto)):
         somar = somar + (conjunto [i] - media) ** 2
-    print ("Soma Xi: ","{:.1f}".format(somar))
+    print ("Soma Xi: ","{:.2f}".format(somar))
     somar = somar / len(conjunto)
     variancia = somar
     return (somar ** 0.5)
@@ -57,11 +57,12 @@ def moda(conjunto):
         valor.append(dict_moda [i])
         chave.append(i)
     maximo = max (valor)
-    indice = valor.index(maximo)
-    modas.append(chave [indice])
-    for j in range (indice+1,len(valor)):
-        if valor [j] == maximo:
-            modas.append(chave[j])
+    if maximo > 1:
+       indice = valor.index(maximo)
+       modas.append(chave [indice])
+       for j in range (indice+1,len(valor)):
+           if valor [j] == maximo:
+              modas.append(chave[j])
     return (modas)
 
 def geragrafico (conjunto):
@@ -100,10 +101,10 @@ while continua == "S" or continua == "s":
    media = soma / n
    print ("\n RESULTADOS: ")
    print ("Conjunto original: ", lista, "Conjunto odenado: ",listaclass)
-   print ("Média (verde): ","{:.1f}".format (media))
+   print ("Média (verde): ","{:.2f}".format (media))
    print ("Mediana (Laranja): ", med)
    print ("Moda(s): ", moda(listaclass))
-   print ("Desvio Padrão: ", "{:.1f}".format(desviopadrao (lista)))
-   print ("Variância: ","{:.1f}".format(variancia))
+   print ("Desvio Padrão: ", "{:.2f}".format(desviopadrao (lista)))
+   print ("Variância: ","{:.2f}".format(variancia))
    geragrafico (listaclass)
    continua = input ("Se desejar continuar, digite S: ")
